@@ -8,6 +8,15 @@ export default () => {
     const posts = useSelector((state)=> {
         return state.posts.fetchedPosts
     })
+    const loading = useSelector(state => state.app.loading)
+
+    if (loading) {
+        return (
+            <div className="spinner-border" role="status">
+                <span className="sr-only">Loading...</span>
+            </div>
+        )
+    }
     if(!posts.length) {
         return <button 
         onClick={() => dispach(fetchPosts())}
